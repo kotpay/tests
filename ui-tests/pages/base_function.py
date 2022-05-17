@@ -56,7 +56,28 @@ class BaseFunction:
             return False
         return True
 
+    def get_attribute_by_locator(self, value, locator):
+        try:
+            return self.element(locator).get_attribute(f"{value}")
+        except NoSuchElementException:
+            return None
+
+    def get_attribute_by_xpath(self, value, locator):
+        try:
+            return self.browser.find_element_by_xpath(f"{locator}").get_attribute(f"{value}")
+        except NoSuchElementException:
+            return None
+
     def check_elements(self, list_of_elements):
         for item in list_of_elements:
             assert self.is_element_present(*item), f"Элемент {item} не найден!"
 
+    def check_input_field(self, locator, result):
+       assert self.get_attribute_by_locator("textContent", locator) == result, \
+           "Значение в поле ввода не совпадает с ожидаемым!"
+
+    def click_element_by_locator(self, locator):
+        self.element(locator).click()
+
+    def click_element_by_xpath(self, xpath):
+        self.browser.find_element_by_xpath(xpath).click()
