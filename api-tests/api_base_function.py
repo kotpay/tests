@@ -16,7 +16,6 @@ class BaseMethods:
         return response
 
     def check_POST_response(s, url, data, assertion_status_code=200):
-        print(s.link() + url)
         response = requests.post(s.link() + url, json=data)
         s.assertEqual(response.status_code, assertion_status_code)
         return response

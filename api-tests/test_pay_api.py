@@ -6,19 +6,16 @@ class MyTestCase(unittest.TestCase, BaseMethods):
     def test_create_order(self):
         data = self.get_json_from_file("create_order.json")
         response = self.check_POST_response("/order/register.do", data=data).json()
-        print(response)
         self.check_successes_response(response)
 
-    def test_create_order_invalid_amount(self):
+    def test_order_invalid_amount(self):
         data = self.create_custom_json_for_order("0", "RUB")
         response = self.check_POST_response("/order/register.do", data=data).json()
-        print(response)
         self.check_response_error(response, "client.amount.invalid")
 
     def test_create_order_invalid_currency(self):
         data = self.create_custom_json_for_order("120", "RAB")
         response = self.check_POST_response("/order/register.do", data=data).json()
-        print(response)
         self.check_response_error(response, "client.currency.invalid")
 
     def test_without_order(self):
@@ -43,7 +40,6 @@ class MyTestCase(unittest.TestCase, BaseMethods):
         id = self.create_order()
         data = {"orderId": id}
         response = self.check_POST_response("/order/status.do", data=data).json()
-        print(response)
         self.check_successes_response(response)
         self.assertEqual(response['data']['status'], 'CREATED')
 

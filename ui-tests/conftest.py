@@ -9,5 +9,5 @@ def browser():
 
 @pytest.fixture(scope="function")
 def link():
-    return "https://skipperprivate.github.io/courseApp/?#"
+    return "https://skipperprivate.github.io/courseApp/"
 

@@ -73,8 +73,8 @@ class BaseFunction:
             assert self.is_element_present(*item), f"Элемент {item} не найден!"
 
     def check_input_field(self, locator, result):
-       assert self.get_attribute_by_locator("innerHTML", locator) == result, \
-           f"Значение в поле ввода не совпадает с ожидаемым! fac- {self.get_attribute_by_locator('innerHTML', locator)}, assert - {result}"
+        assert self.get_attribute_by_locator("value", locator) == result, \
+           f"Значение в поле ввода не совпадает с ожидаемым! fac- '{self.get_attribute_by_locator('innerHTML', locator)}', assert - '{result}'"
 
     def click_element_by_locator(self, locator):
         self.element(locator).click()
