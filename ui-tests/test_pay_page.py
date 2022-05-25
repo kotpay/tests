@@ -25,13 +25,6 @@ class TestPayPage:
         PayPage(browser, link)\
             .check_cvc_input()
 
-    @pytest.mark.skip
-    def test_check_pay_button(self, browser, link):  # RTM-96 Проверка активации кнопки "Оплатить"
-        PayPage(browser, link)\
-            .open()\
-            .check_pay_button()\
-            .click_pay_button()
-
     def test_check_success_page(self, browser, link):
         PayPage(browser, link + '?orderId=123')\
             .open()\
@@ -41,3 +34,8 @@ class TestPayPage:
         PayPage(browser, link + '?orderId=')\
             .open()\
             .check_success_page_elements()
+
+    def test_check_pay_button(self, browser, link):  # RTM-96 Проверка активации кнопки "Оплатить"
+        PayPage(browser, link)\
+            .open()\
+            .check_pay_button()

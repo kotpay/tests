@@ -14,7 +14,6 @@ class PayPage(BaseFunction):
         self.check_elements(elem)
         return self
 
-
     def __check_variants(self, locator, variants):
         for item in variants:
             self.send_value_by_locator(item[0], locator)
@@ -50,15 +49,7 @@ class PayPage(BaseFunction):
             f"Кнопка Оплатить не равна ожидаемому результату, assert - {result}!"
 
     def check_pay_button(self):
-        self.__check_is_pay_button_active(False)
-        self.send_value_by_locator("12345678912345678", PayPageLocators.CARD_NUMBER)
-        self.__check_is_pay_button_active(False)
-        self.send_value_by_locator("02", PayPageLocators.CARD_DATE_MONTH)
-        self.__check_is_pay_button_active(False)
-        self.send_value_by_locator("12", PayPageLocators.CARD_DATE_YEAR)
-        self.__check_is_pay_button_active(False)
-        self.send_value_by_locator("123", PayPageLocators.CVC)
-        self.__check_is_pay_button_active(True)
+        self.check_elements([PayPageLocators.PAY_BUTTON])
 
     def click_pay_button(self):
         current_url = self.browser.current_url()
