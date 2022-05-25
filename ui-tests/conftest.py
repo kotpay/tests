@@ -9,5 +9,5 @@ def browser():
 
 @pytest.fixture(scope="function")
 def link():
-    return "" #TODO указать ссылку на развернутый проект
+    return "https://skipperprivate.github.io/courseApp/"
 
